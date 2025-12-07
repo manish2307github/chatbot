@@ -1,0 +1,147 @@
+# ==================== RASA NLU TRAINING DATA (nlu.yml) ====================
+version: "3.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - good morning
+    - good evening
+    - moin
+    - welcome
+    - good day
+    - greetings
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you around
+    - see you later
+    - farewell
+    - take care
+    - talk to you soon
+    - bye bye
+    - have a good day
+
+- intent: affirm
+  examples: |
+    - yes
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - right
+    - absolutely
+    - yep
+    - true
+
+- intent: deny
+  examples: |
+    - no
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - nope
+
+- intent: order_status
+  examples: |
+    - What's the status of my order?
+    - Where is my order [ORD-12345](order_id)?
+    - Can you track my order [ORD-98765](order_id)?
+    - I want to know about my order
+    - Where's my delivery?
+    - Check order status [ORD-11111](order_id)
+    - My order has not arrived
+    - When will my order [ORD-55555](order_id) arrive?
+    - Is my order shipped?
+    - Track my package
+    - I ordered something, where is it?
+    - How long does shipping take?
+    - When can I expect delivery?
+    - What's the tracking info?
+
+- intent: product_info
+  examples: |
+    - Tell me about the [laptop](product_name)
+    - What's the price of [iPhone 13](product_name)?
+    - Do you have [running shoes](product_name) in stock?
+    - Show me [blue jeans](product_name)
+    - What are the specs of [Samsung TV](product_name)?
+    - How much does [coffee maker](product_name) cost?
+    - What features does [headphones](product_name) have?
+    - Is [dress](product_name) available?
+    - Product information for [camera](product_name)
+    - Can you tell me about product [microphone](product_name)?
+    - What [laptop](product_name) models do you have?
+    - Price range for [watches](product_name)?
+    - Specifications for [speaker](product_name)
+
+- intent: pricing_question
+  examples: |
+    - What's the price?
+    - How much does it cost?
+    - What's the cost?
+    - How much is it?
+    - Can you give me the price?
+    - What's your lowest price?
+    - Any discounts available?
+    - Is there a cheaper option?
+    - What's the price [for US](location)?
+    - Cost [in Canada](location)?
+
+- intent: return_refund
+  examples: |
+    - I want to return my order
+    - Can I get a refund?
+    - How do I return this?
+    - I need to exchange this item
+    - Can I send it back?
+    - What's your return policy?
+    - I'm not satisfied with my order
+    - Can I return [ORD-12345](order_id)?
+    - How long do I have to return?
+    - Refund for [defective product](issue_type)
+
+- intent: troubleshooting
+  examples: |
+    - My product is broken
+    - It's not working
+    - I have a problem with my order
+    - There's an [issue](issue_type) with the product
+    - The product is [damaged](issue_type)
+    - How do I fix [this](issue_type)?
+    - Technical support needed
+    - Product [malfunction](issue_type)
+    - It stopped working
+    - The [screen](issue_type) is cracked
+
+- intent: shipping_inquiry
+  examples: |
+    - How much is shipping?
+    - What's the shipping cost?
+    - Do you ship to [United States](location)?
+    - How long is standard shipping?
+    - Can you ship [to Canada](location)?
+    - What are shipping options?
+    - Express shipping available?
+    - When will it ship?
+    - International shipping to [UK](location)?
+    - Free shipping available?
+
+- intent: general_inquiry
+  examples: |
+    - Tell me more about your services
+    - What do you offer?
+    - Help me out
+    - I need assistance
+    - Can you help?
+    - Do you have customer service?
+    - Who are you?
+    - What's your business?
+    - Customer support hours?
+    - How do I contact support?

@@ -1,0 +1,45 @@
+# ==================== RASA DOMAIN (domain.yml) ====================
+version: "3.0"
+
+intents:
+  - order_status
+  - product_info
+  - return_refund
+  - troubleshooting
+  - shipping_inquiry
+  - pricing_question
+  - general_inquiry
+  - greet
+  - goodbye
+  - affirm
+  - deny
+
+entities:
+  - order_id
+  - product_name
+  - price_range
+  - location
+  - issue_type
+
+slots:
+  order_id:
+    type: text
+  product_name:
+    type: text
+  location:
+    type: text
+  issue_type:
+    type: text
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+  
+  utter_goodbye:
+    - text: "Thank you for contacting us. Have a great day!"
+
+actions:
+  - action_get_order_status
+  - action_search_products
+  - action_process_return
+

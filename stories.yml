@@ -1,0 +1,57 @@
+# ==================== RASA STORIES (stories.yml) ====================
+version: "3.0"
+
+stories:
+- story: order status inquiry
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: order_status
+    - action: action_get_order_status
+    - intent: affirm
+    - action: utter_goodbye
+
+- story: product search
+  steps:
+    - intent: greet
+    - intent: product_info
+    - action: action_search_products
+    - intent: affirm
+    - action: utter_goodbye
+
+- story: return process
+  steps:
+    - intent: return_refund
+    - action: action_process_return
+    - intent: affirm
+    - action: utter_goodbye
+
+- story: troubleshooting
+  steps:
+    - intent: troubleshooting
+    - action: action_get_order_status
+    - intent: general_inquiry
+    - action: utter_goodbye
+
+- story: pricing inquiry
+  steps:
+    - intent: pricing_question
+    - action: action_search_products
+    - intent: deny
+    - action: utter_goodbye
+
+- story: shipping question
+  steps:
+    - intent: shipping_inquiry
+    - action: action_get_order_status
+    - intent: affirm
+    - action: utter_goodbye
+
+- story: general help
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: general_inquiry
+    - action: action_search_products
+    - intent: goodbye
+    - action: utter_goodbye

@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Neo4j Database
+  neo4j:
+    image: neo4j:latest
+    container_name: conversational_ai_neo4j
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/password
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_memory_heap_maxSize: '2G'
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    networks:
+      - chatbot_network
+
+  # Flask Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.dockerfile
+    container_name: conversational_ai_backend
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: production
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: password
+      RASA_MODEL_PATH: /models/rasa_model
+      DEVICE: cuda
+    volumes:
+      - ./models:/models
+      - ./logs:/logs
+    depends_on:
+      - neo4j
+    networks:
+      - chatbot_network
+    command: python app.py
+
+  # Rasa Server (Optional - for advanced Rasa features)
+  rasa:
+    image: rasa/rasa:latest
+    container_name: conversational_ai_rasa
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./rasa_config:/app
+    networks:
+      - chatbot_network
+    command: run --enable-api --cors "*"
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+
+networks:
+  chatbot_network:
+    driver: bridge
+
